@@ -17,6 +17,7 @@ export const App = () => {
     Math.round((good * 100) / countTotalFeedback());
 
   const handleClick = ({ target: { name } }) => {
+
     switch (name) {
       case 'good':
         setGood(state => state + 1);
