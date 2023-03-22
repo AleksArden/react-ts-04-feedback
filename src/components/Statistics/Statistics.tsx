@@ -1,15 +1,22 @@
-import PropTypes from 'prop-types';
+import { NumberOfVotes } from 'type/numberOfVotes';
+
 import css from './Statistics.module.css';
 
-export const Statistics = ({ total, positivePercentage, dataFeedback }) => {
+interface IProps {
+  total: number,
+  positivePercentage: number,
+  dataFeedback: NumberOfVotes,
+}
+
+export const Statistics = ({ total, positivePercentage, dataFeedback }: IProps) => {
   return (
     <>
       <h3 className={css.title}>Statistics</h3>
       <ul className={css.list}>
-        {Object.keys(dataFeedback).map(key => (
-          <li key={key}>
+        {Object.entries(dataFeedback).map(item => (
+          <li key={item[0]}>
             <p>
-              {key}: {dataFeedback[key]}
+              {item[0]}: {item[1]}
             </p>
           </li>
         ))}
@@ -22,13 +29,4 @@ export const Statistics = ({ total, positivePercentage, dataFeedback }) => {
       </ul>
     </>
   );
-};
-Statistics.propTypes = {
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
-  dataFeedback: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
 };

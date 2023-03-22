@@ -1,7 +1,11 @@
-import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+interface IProps {
+  options: Array<string>,
+  onLeaveFeedback: (evt: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export const FeedbackOptions = ({ options, onLeaveFeedback }: IProps) => {
   return (
     <ul className={css.list}>
       {options.map(option => (
@@ -19,7 +23,4 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     </ul>
   );
 };
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
+
